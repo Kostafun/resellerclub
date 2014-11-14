@@ -37,7 +37,7 @@ def eql_urls(url1, url2)
   return false
 end
 
-Spec::Matchers.define :be_eql_url do |original_url|
+RSpec::Matchers.define :be_eql_url do |original_url|
   match do |generated_url|
     eql_urls(generated_url, URI::encode(original_url))
   end
