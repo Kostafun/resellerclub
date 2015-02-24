@@ -4,6 +4,6 @@ group :test do
   gem 'json'
   gem 'json_spec'
   gem 'rack-test'
-  gem 'typhoeus'
+  gem 'rest-client'
   gem 'pry'
 end

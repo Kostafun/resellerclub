@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "A gem that implements the sections Customer, Reseller, Contact and Domain from ResellerClub"
   s.authors     = ["Damian Rodriguez"]
   s.email       = 'damian@speedyrails.com'
-  s.add_dependency("typhoeus", ">= 0.3.3")
+  s.add_dependency("rest-client")
   s.add_dependency("json", ">= 0")
   s.add_dependency("rspec", ">= 2.11.0")
   s.add_dependency("rspec-expectations", ">= 2.11.3")

@@ -1,5 +1,5 @@
 require "rubygems"
-require "typhoeus"
+require "rest_client"
 require "open-uri"
 require "json"
 
@@ -91,19 +91,19 @@ module ResellerClub
           return url
         end
         if data["silent"]
-          Typhoeus::Request.send data["http_method"], url
+          RestClient.method(data["http_method"].to_sym).call(url)
         else
-          response = Typhoeus::Request.send data["http_method"], url
+          response = RestClient.method(data["http_method"].to_sym).call(url)
           case response.code
           when 200
-            return JSON.parse(true_false_or_text_bind.call(response.body))
+            return JSON.parse(true_false_or_text_bind.call(response.to_str))
           when 500
-            error = JSON.parse(true_false_or_text_bind.call(response.body))
+            error = JSON.parse(true_false_or_text_bind.call(response.to_str))
             raise error["message"]
           when 404
             raise "Action not Found"
           else
-            error = JSON.parse(true_false_or_text_bind.call(response.body))
+            error = JSON.parse(true_false_or_text_bind.call(response.to_str))
             raise error["message"]
           end
         end
