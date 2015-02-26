@@ -1,4 +1,5 @@
 require_relative "./mixin.rb"
+require_relative "./models/billing.rb"
 require_relative "./models/customer.rb"
 require_relative "./models/reseller.rb"
 require_relative "./models/contact.rb"
