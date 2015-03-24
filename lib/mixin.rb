@@ -6,11 +6,13 @@ require "json"
 module ResellerClub
 
   @@auth_userid = "0"
-  @@auth_password = "password"
+  @@auth_password = ""
+  @@api_key = ""
 
-  def self.authentication(userid = nil, password = nil)
+  def self.authentication(userid = nil, password = nil,apikey="")
     @@auth_userid = userid
     @@auth_password = password
+    @@api_key = apikey
   end
 
   def self.auth_userid
@@ -19,6 +21,10 @@ module ResellerClub
 
   def self.auth_password
     @@auth_password
+  end
+
+  def self.api_key
+    @@api_key
   end
 
   def true_false_or_text(str)
@@ -84,6 +90,9 @@ module ResellerClub
       if not data["values"].keys.include? "auth_userid" and not data["values"].keys.include? "auth_password"
         data["values"]["auth_userid"] = ResellerClub::auth_userid
         data["values"]["auth_password"] = ResellerClub::auth_password
+      end
+      if not data["values"].keys.include? "api_key"
+        data["values"]["api_key"] = ResellerClub::api_key
       end
       if data["validate"].call(data["values"])
         url = construct_url_bind.call(data["values"], data["url"])
